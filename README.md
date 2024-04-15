@@ -1,28 +1,41 @@
-# Sistema-de-Pizzaria-em-sql
+# Sistema de Pizzaria em sql
 uma programação em sql que simula um banco de dados de uma pizzaria
 -------------------------------------------------------------------------
+Abaixo está a programação em sqlite com a criação e inserção de dados de uma pizzaria.
+
+------------------------------------------------------------------------
+
+
 CREATE TABLE receitas(
+
 	id integer	PRIMARY KEY	autoincrement,
 	instruções	varchar,
 	autor		varchar
 );
 
 INSERT INTO receitas(instruções,autor)VALUES
+
 ('abra a massa, coloque o molho e quejo de tomate, coloque os ingredientes da pizza acima do queijo e coloque no forno', 'Caetano Bernardo');
 
+------------------------------------------------------------------------------
+
 create TABLE embalagem(
-	id			integer PRIMARY KEY autoincrement,
+
+	id		integer PRIMARY KEY autoincrement,
 	material	varchar,
 	tamanho		double,
 	preco		double
 );
 INSERT INTO embalagem(material,tamanho,preco)values
+
 ('plastico', 45.00, 2.50),
 ('papelão', 45.00, 1.25),
 ('plastico degradavel', 40.00, 4.15);
 
+------------------------------------------------------------------------------
 
 create TABLE pizza(
+
 	id				integer PRIMARY KEY autoincrement,
 	ingredientes	varchar,
 	sabor			varchar,
@@ -37,6 +50,7 @@ create TABLE pizza(
 );
 
 INSERT INTO pizza(ingredientes,sabor,preco,descricão,tamanho,id_embalagem)VALUES
+
 ('massa, quiejo, calabresa, cebola', 'calabresa', 28.99, 'pizza de calabresa com cebola', 28.00, 1),
 ('massa, quiejo, presunto, cebola, ovo, milho', 'portuguesa', 28.99, 'pizza portuguesa completa com', 28.00, 2),
 ('massa, tomate, quiejo', 'queijo', 28.99, 'pizza de calabresa com cebola', 28.00, 3),
@@ -67,7 +81,11 @@ INSERT INTO pizza(ingredientes,sabor,preco,descricão,tamanho,id_embalagem)VALUE
 ('massa, queijo, camarão, palmito', 'Camarão e Palmito', 39.50, 'Pizza de camarão com palmito', 46.00, 1),
 ('massa, queijo, carne seca, catupiry', 'Carne Seca com Catupiry', 38.99, 'Pizza de carne seca com catupiry', 46.00, 2);
 
+------------------------------------------------------------------------------
+
+
 create TABLE pizzaiolo(
+
 	id			integer PRIMARY KEY autoincrement,
 	nome		varchar,
 	salario		double,
@@ -75,7 +93,9 @@ create TABLE pizzaiolo(
 	
 	FOREIGN KEY (faz) REFERENCES pizza(sabor)
 );
+
 INSERT INTO pizzaiolo(nome, salario, faz)VALUES
+
 ('João Silva', 2500.00, 'Calabresa com Cebola'),
 ('Maria Santos', 2800.00, 'Frango com Catupiry'),
 ('Pedro Oliveira', 3000.00, 'Presunto e Milho'),
@@ -105,3 +125,10 @@ INSERT INTO pizzaiolo(nome, salario, faz)VALUES
 ('Isabela Lima', 3200.00, 'Brócolis com Requeijão'),
 ('Vinicius Costa', 2700.00, 'Presunto Parma e Rúcula'),
 ('Caroline Oliveira', 3100.00, 'Tomate e Manjericão');
+
+
+------------------------------------------------------------------------------
+
+select nome from pizzaiolos where faz = "sabor de pizza";
+
+(com o comando acima você seleciona o  nome do pizzaiolo que faz determiando sabor de pizza)
